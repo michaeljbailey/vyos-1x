@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<interfaceDefinition>
+  <node name="show">
+    <children>
+      <node name="interfaces">
+        <children>
+          <node name="vxlan">
+            <properties>
+              <help>Show summary of specified vxlan interface information</help>
+            </properties>
+            <command>${vyatta_bindir}/vyatta-show-interfaces.pl --intf-type="vxlan" --action=show-brief</command>
+            <children>
+              <leafNode name="detail">
+                <properties>
+                  <help>Show detailed vxlan interface information</help>
+                </properties>
+                <command>${vyatta_bindir}/vyatta-show-interfaces.pl --intf-type=vxlan --action=show</command>
+              </leafNode>
+            </children>
+          </node>
+          <tagNode name="vxlan">
+            <properties>
+              <help>Show specified vxlan interface information</help>
+              <completionHelp>
+                <script>${vyos_completion_dir}/list_interface.py --type vxlan</script>
+              </completionHelp>
+            </properties>
+            <command>${vyatta_bindir}/vyatta-show-interfaces.pl --intf="$4"</command>
+            <children>
+              <leafNode name="brief">
+                <properties>
+                  <help>Show summary of specified vxlan interface information</help>
+                </properties>
+                <command>${vyatta_bindir}/vyatta-show-interfaces.pl --intf="$4" --action=show-brief</command>
+              </leafNode>
+            </children>
+          </tagNode>
+        </children>
+      </node>
+    </children>
+  </node>
+</interfaceDefinition>
